@@ -1,5 +1,4 @@
 #!/bin/bash
-. ./azurePipelines/buildScripts/setEnv.sh
 
 echo "Getting service principal credentials..."
 if [ ! -f "${CRCREDENTIALS_SECUREFILEPATH}" ]; then
@@ -19,6 +18,8 @@ if [ -z ${AZ_PIPE_CR_PASS+x} ]; then
   echo "Secure information has not been sourced correctly, AZ_PIPE_CR_PASS is missing"
   exit 3
 fi
+
+. ./azurePipelines/buildScripts/setEnv.sh
 
 echo "Logging in to repository ${AZ_PIPE_CR_URL}"
 buildah login -u "${AZ_PIPE_CR_USER}" -p "${AZ_PIPE_CR_PASS}" "${AZ_PIPE_CR_URL}"  || exit 4
