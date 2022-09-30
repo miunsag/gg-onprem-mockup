@@ -1,5 +1,7 @@
 version: '3.8'
 
+volumes:
+  prometheus-data: {}
 services:
   msr-test-01:
     image: ${CONTAINER_REGISTRY_URL}/${CONTAINER_IMAGE_REPOSITORY}:${CONTAINER_IMAGE_TAG}
@@ -24,4 +26,16 @@ services:
       - ../../test/genericGetTest-01.jmx:/tmp/suite.jmx
     environment:
       - IS_ADMIN_PWD
+      - MIN_USERS_NO
+      - USER_NO_INCREMENT
+      - MAX_USERS_NO
     entrypoint: /mnt/scripts/entrypoint.sh
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    depends_on:
+      - msr-test-01
+    ports:
+      - ${HOST_PORT_PREFIX}90:9090

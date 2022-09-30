@@ -7,7 +7,9 @@ while ! nc -z msr-test-01 5555 ; do
   sleep 5
 done
 
-declare -i usersNo=0
+declare -i usersNo=${MIN_USERS_NO:-2}
+declare -i usersInc=${USER_NO_INCREMENT:-2}
+declare -i maxUsersNo=${MAX_USERS_NO:-8}
 declare -i loopCount=${LOOP_COUNT:-20}
 declare -i slowMultiplier=${SLOW_MULTIPLIER:-200}
 declare -i longLoopCount=${loopCount}*200
@@ -22,11 +24,8 @@ echo "fastMillis=${fastMillis}"
 echo "slowMillis=${slowMillis}"
 #echo "=${}"
 
-for i in {1..4}; do
-
-  declare -i usersNo+=$i
-
-  echo "running tests with ${usersNo} users"
+while [ ${usersNo} -le ${maxUsersNo} ]; do
+  echo "Running tests with ${usersNo} users"
 
   jmeter -n \
     -JserviceHostname=msr-test-01 \
@@ -42,6 +41,7 @@ for i in {1..4}; do
     -t /tmp/suite.jmx
 
   sleep 20
+  declare -i usersNo+=${usersInc}
 done
 
 echo "tests completed"
