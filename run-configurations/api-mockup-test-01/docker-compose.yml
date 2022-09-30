@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  msr-test-01:
+    image: ${CONTAINER_REGISTRY_URL}/${CONTAINER_IMAGE_REPOSITORY}:${CONTAINER_IMAGE_TAG}
+    ports:
+      - ${HOST_PORT_PREFIX}55:5555
+    volumes:
+      - ${HOST_MSR_LICENSE_FILE}:/tmp/license.xml
+      - ./application.properties:/tmp/application.properties
+    mem_reservation: 100m
+    mem_limit: 400m
+    cpus: 0.5
+    environment:
+      - SAG_IS_LICENSE_FILE=/tmp/license.xml
+      - SAG_IS_CONFIG_PROPERTIES=/tmp/application.properties
+      - JAVA_MIN_MEM=256m
+      - JAVA_MAX_MEM=256m
+      - IS_ADMIN_PWD
+  jmeter:
+    image: alpine/jmeter
+    volumes:
+      - ./scripts/jmeter:/mnt/scripts
+      - ../../test/genericGetTest-01.jmx:/tmp/suite.jmx
+    environment:
+      - IS_ADMIN_PWD
+    entrypoint: /mnt/scripts/entrypoint.sh

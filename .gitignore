@@ -2,3 +2,4 @@
 **/local/*
 *.bak
 cr.credentials.secret.sh
+*.log
