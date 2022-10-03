@@ -3,6 +3,9 @@ version: '3.8'
 volumes:
   prometheus-data: {}
   grafana-data: {}
+  influxdb-config: {}
+  influxdb-data: {}
+
 services:
   msr-test-01:
     image: ${CONTAINER_REGISTRY_URL}/${CONTAINER_IMAGE_REPOSITORY}:${CONTAINER_IMAGE_TAG}
@@ -22,6 +25,7 @@ services:
       - IS_ADMIN_PWD
   jmeter:
     image: alpine/jmeter
+    #hostname: jmeter
     volumes:
       - ./scripts/jmeter:/mnt/scripts
       - ../../test/genericGetTest-01.jmx:/tmp/suite.jmx
@@ -45,5 +49,11 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./local/grafana:/mnt/local
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
     ports:
       - ${HOST_PORT_PREFIX}30:3000
+    depends_on:
+      - msr-test-01
+      - prometheus

@@ -8,5 +8,5 @@ providers:
   folderUid: ''
   type: file
   options:
-    path: /usr/share/grafana/conf/provisioning/dashboards/MyTests
+    path: /etc/grafana/provisioning/dashboards/MyTests
     foldersFromFilesStructure: true
