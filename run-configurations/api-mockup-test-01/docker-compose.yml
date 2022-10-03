@@ -2,6 +2,7 @@ version: '3.8'
 
 volumes:
   prometheus-data: {}
+  grafana-data: {}
 services:
   msr-test-01:
     image: ${CONTAINER_REGISTRY_URL}/${CONTAINER_IMAGE_REPOSITORY}:${CONTAINER_IMAGE_TAG}
@@ -39,3 +40,10 @@ services:
       - msr-test-01
     ports:
       - ${HOST_PORT_PREFIX}90:9090
+  grafana:
+    image: grafana/grafana-oss
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./local/grafana:/mnt/local
+    ports:
+      - ${HOST_PORT_PREFIX}30:3000
