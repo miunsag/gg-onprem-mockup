@@ -32,7 +32,7 @@ buildah login -u "${AZ_PIPE_CR_USER}" -p "${AZ_PIPE_CR_PASS}" "${AZ_PIPE_CR_URL}
 
 echo "Building tag ${OUR_SERVICE_TAG_BASE}"
 buildah bud \
-  --build-arg __base_image="${AZ_BASE_IMAGE_TAG}" \
+  --build-arg __from_img="${AZ_BASE_IMAGE_TAG}" \
   --format docker \
   -t "${OUR_SERVICE_TAG_BASE}"
   
