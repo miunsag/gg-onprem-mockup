@@ -28,6 +28,19 @@
   "liveNow": false,
   "panels": [
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Processor Insights",
+      "type": "row"
+    },
+    {
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
@@ -82,12 +95,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 1
       },
-      "id": 6,
+      "id": 10,
       "options": {
         "legend": {
           "calcs": [],
@@ -112,23 +125,14 @@
         {
           "datasource": "Prometheus",
           "editorMode": "builder",
-          "expr": "rate(process_cpu_seconds_total[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": "Prometheus",
-          "editorMode": "builder",
           "expr": "sag_is_server_proc_sys_percent",
           "hide": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "D"
+          "refId": "B"
         }
       ],
-      "title": "CPU",
+      "title": "IS CPU",
       "type": "timeseries"
     },
     {
@@ -183,15 +187,28 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*Threads.Waited.*"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 1
       },
-      "id": 2,
+      "id": 6,
       "options": {
         "legend": {
           "calcs": [],
@@ -208,59 +225,81 @@
         {
           "datasource": "Prometheus",
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.95, sum by(le) (rate(jmeter_mtg_q_Latency_bucket[$__rate_interval])))",
-          "legendFormat": "__auto",
+          "expr": "sag_is_server_threads",
+          "legendFormat": "IS Server Threads {{instance}}",
           "range": true,
           "refId": "A"
         },
         {
           "datasource": "Prometheus",
-          "editorMode": "builder",
-          "expr": "histogram_quantile(0.95, sum by(le) (rate(jmeter_mtg_s_latency_bucket[$__rate_interval])))",
+          "editorMode": "code",
+          "expr": "sag_is_service_threads",
           "hide": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": "Prometheus",
-          "editorMode": "builder",
-          "expr": "histogram_quantile(0.95, sum by(le) (rate(jmeter_stg_latency_bucket[$__rate_interval])))",
-          "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "IS Service Threads {{instance}}",
           "range": true,
           "refId": "C"
         },
         {
           "datasource": "Prometheus",
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.95, sum by(le) (rate(jmeter_qtg_latency_bucket[$__rate_interval])))",
+          "expr": "sag_is_peak_service_threads",
           "hide": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": "Prometheus",
-          "editorMode": "builder",
-          "expr": "rate(jmeter_mtg_q_latency_sum[$__rate_interval])",
-          "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "IS Peak Service Threads {{instance}}",
           "range": true,
           "refId": "E"
         },
         {
           "datasource": "Prometheus",
           "editorMode": "builder",
-          "expr": "rate(jmeter_mtg_s_latency_sum[$__rate_interval])",
+          "expr": "sag_is_system_threads",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "IS System Threads {{instance}}",
           "range": true,
           "refId": "F"
+        },
+        {
+          "datasource": "Prometheus",
+          "editorMode": "code",
+          "expr": "rate(sag_is_jvm_threads_waited_count[$__rate_interval])",
+          "hide": false,
+          "legendFormat": "IS JVM Threads Waited Rate {{__rate_interval}}",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": "Prometheus",
+          "editorMode": "builder",
+          "expr": "sag_is_server_jvm_thread_count",
+          "hide": false,
+          "legendFormat": "IS JVM Threads {{instance}}",
+          "range": true,
+          "refId": "G"
+        },
+        {
+          "datasource": "Prometheus",
+          "editorMode": "builder",
+          "expr": "sag_is_server_sysload_average",
+          "hide": false,
+          "legendFormat": "Threads Waiting for hw resources {{instance}}",
+          "range": true,
+          "refId": "H"
         }
       ],
-      "title": "JMeter Latencies",
+      "title": "Threads",
       "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 2,
+      "panels": [],
+      "title": "Memory Insights",
+      "type": "row"
     },
     {
       "datasource": "Prometheus",
@@ -314,13 +353,26 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 11
       },
       "id": 4,
       "options": {
@@ -339,26 +391,112 @@
         {
           "datasource": "Prometheus",
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.95, sum by(le) (rate(jmeter_mtg_s_response_size_bucket[$__rate_interval])))",
-          "legendFormat": "__auto",
+          "expr": "sag_is_used_memory_bytes",
+          "legendFormat": "IS Used Memory Bytes {{instance}}",
           "range": true,
           "refId": "A"
         },
         {
           "datasource": "Prometheus",
           "editorMode": "builder",
-          "expr": "rate(jmeter_mtg_s_response_size_sum[$__rate_interval])",
+          "expr": "sag_is_server_used_memory_mbytes",
           "hide": false,
-          "legendFormat": "__auto",
+          "legendFormat": "IS Server USed Memory MBytes {{instance}}",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Response Payload Sizes",
+      "title": "Memory Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "editorMode": "builder",
+          "expr": "sag_is_jvm_gc_collection_millis",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Millis since last Garbage Collection",
       "type": "timeseries"
     }
   ],
-  "refresh": "10s",
+  "refresh": "30s",
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -366,13 +504,13 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Jmeter Latencies",
-  "uid": "MYr9KbVVk",
+  "title": "MSR View 1",
+  "uid": "9eg23PVVz",
   "version": 1,
   "weekStart": ""
 }

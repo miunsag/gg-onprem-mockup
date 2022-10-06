@@ -101,9 +101,9 @@
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
                 <stringProp name="collector.help">default help string</stringProp>
                 <stringProp name="collector.metric_name">jmeter_mtg_q_latency</stringProp>
-                <stringProp name="collector.type">HISTOGRAM</stringProp>
+                <stringProp name="collector.type">SUMMARY</stringProp>
                 <collectionProp name="collector.labels"/>
-                <stringProp name="collector.quantiles_or_buckets">100,500,1000,3000</stringProp>
+                <stringProp name="collector.quantiles_or_buckets">0.75,0.5|0.95,0.1|0.99,0.01</stringProp>
                 <stringProp name="listener.collector.measuring">Latency</stringProp>
               </elementProp>
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
@@ -201,10 +201,11 @@
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
                 <stringProp name="collector.help">default help string</stringProp>
                 <stringProp name="collector.metric_name">jmeter_mtg_s_latency</stringProp>
-                <stringProp name="collector.type">HISTOGRAM</stringProp>
+                <stringProp name="collector.type">SUMMARY</stringProp>
                 <collectionProp name="collector.labels"/>
-                <stringProp name="collector.quantiles_or_buckets">100,500,1000,3000</stringProp>
+                <stringProp name="collector.quantiles_or_buckets">0.75,0.5|0.95,0.1|0.99,0.01</stringProp>
                 <stringProp name="listener.collector.measuring">Latency</stringProp>
+                <stringProp name="listener.collector.listen_to">samples</stringProp>
               </elementProp>
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
                 <stringProp name="collector.help">default help string</stringProp>
@@ -217,9 +218,9 @@
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
                 <stringProp name="collector.help">default help string</stringProp>
                 <stringProp name="collector.metric_name">jmeter_mtg_s_response_size</stringProp>
-                <stringProp name="collector.type">HISTOGRAM</stringProp>
+                <stringProp name="collector.type">SUMMARY</stringProp>
                 <collectionProp name="collector.labels"/>
-                <stringProp name="collector.quantiles_or_buckets">5000,50000,200000,500000</stringProp>
+                <stringProp name="collector.quantiles_or_buckets">0.75,0.5|0.95,0.1|0.99,0.01</stringProp>
                 <stringProp name="listener.collector.measuring">ResponseSize</stringProp>
               </elementProp>
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
@@ -361,9 +362,9 @@
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
                 <stringProp name="collector.help">default help string</stringProp>
                 <stringProp name="collector.metric_name">jmeter_stg_latency</stringProp>
-                <stringProp name="collector.type">HISTOGRAM</stringProp>
+                <stringProp name="collector.type">SUMMARY</stringProp>
                 <collectionProp name="collector.labels"/>
-                <stringProp name="collector.quantiles_or_buckets">100,500,1000,3000</stringProp>
+                <stringProp name="collector.quantiles_or_buckets">0.75,0.5|0.95,0.1|0.99,0.01</stringProp>
                 <stringProp name="listener.collector.measuring">Latency</stringProp>
                 <stringProp name="listener.collector.listen_to">samples</stringProp>
               </elementProp>
@@ -388,7 +389,7 @@
           </com.github.johrstrom.listener.PrometheusListener>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View SlowService Results in Table Slow" enabled="true">
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View SlowService Results in Table" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -515,9 +516,9 @@
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
                 <stringProp name="collector.help">default help string</stringProp>
                 <stringProp name="collector.metric_name">jmeter_qtg_latency</stringProp>
-                <stringProp name="collector.type">HISTOGRAM</stringProp>
+                <stringProp name="collector.type">SUMMARY</stringProp>
                 <collectionProp name="collector.labels"/>
-                <stringProp name="collector.quantiles_or_buckets">100,500,1000,3000</stringProp>
+                <stringProp name="collector.quantiles_or_buckets">0.75,0.5|0.95,0.1|0.99,0.01</stringProp>
                 <stringProp name="listener.collector.measuring">Latency</stringProp>
               </elementProp>
               <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
