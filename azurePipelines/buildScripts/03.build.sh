@@ -21,12 +21,18 @@ fi
 
 . ./azurePipelines/buildScripts/setEnv.sh
 
+if [ -z ${AZ_BASE_IMAGE_TAG} ]; then
+  echo "Warning: AZ_BASE_IMAGE_TAG environment variable is not set!"
+else
+  echo "INFO: using base image ${AZ_BASE_IMAGE_TAG}"
+fi
+
 echo "Logging in to repository ${AZ_PIPE_CR_URL}"
 buildah login -u "${AZ_PIPE_CR_USER}" -p "${AZ_PIPE_CR_PASS}" "${AZ_PIPE_CR_URL}"  || exit 4
 
 echo "Building tag ${OUR_SERVICE_TAG_BASE}"
 buildah bud \
-  --build-arg __base_image=${AZ_BASE_IMAGE_TAG} \
+  --build-arg __base_image="${AZ_BASE_IMAGE_TAG}" \
   --format docker \
   -t "${OUR_SERVICE_TAG_BASE}"
   
