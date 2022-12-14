@@ -104,15 +104,8 @@ public final class j
 		// --- <<IS-START(getCurrentHostName)>> ---
 		// @sigtype java 3.5
 		// [o] field:0:required currentHostName
-		String hostname=null;
-		try {
-			hostname = java.net.InetAddress.getLocalHost().getHostName();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		IDataCursor pipelineCursor = pipeline.getCursor();
-		IDataUtil.put( pipelineCursor, "currentHostName", hostname );
+		IDataUtil.put( pipelineCursor, "currentHostName", crtHostName );
 		pipelineCursor.destroy();
 		// --- <<IS-END>> ---
 
@@ -179,5 +172,20 @@ public final class j
 
                 
 	}
+
+	// --- <<IS-START-SHARED>> ---
+	static private String getCrtHostName(){
+		String s = null;
+		try {
+			s = java.net.InetAddress.getLocalHost().getHostName();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+	}
+	
+	static final private String crtHostName=getCrtHostName();
+	// --- <<IS-END-SHARED>> ---
 }
 

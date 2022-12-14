@@ -7,7 +7,12 @@
   <value name="node_pkg">SagServiceMockup</value>
   <value name="is_public">false</value>
   <value name="encodeutf8">true</value>
-  <value name="shared"></value>
+  <value name="shared">c3RhdGljIHByaXZhdGUgU3RyaW5nIGdldENydEhvc3ROYW1lKCl7CglTdHJpbmcgcyA9IG51bGw7
+Cgl0cnkgewoJCXMgPSBqYXZhLm5ldC5JbmV0QWRkcmVzcy5nZXRMb2NhbEhvc3QoKS5nZXRIb3N0
+TmFtZSgpOwoJfSBjYXRjaCAoVW5rbm93bkhvc3RFeGNlcHRpb24gZSkgewoJCS8vIFRPRE8gQXV0
+by1nZW5lcmF0ZWQgY2F0Y2ggYmxvY2sKCQllLnByaW50U3RhY2tUcmFjZSgpOwoJfQoJcmV0dXJu
+IHM7Cn0KCnN0YXRpYyBmaW5hbCBwcml2YXRlIFN0cmluZyBjcnRIb3N0TmFtZT1nZXRDcnRIb3N0
+TmFtZSgpOw==</value>
   <value name="extends"></value>
   <array name="implements" type="value" depth="1">
   </array>
