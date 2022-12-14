@@ -7,6 +7,29 @@ import com.wm.util.Values;
 import com.wm.app.b2b.server.Service;
 import com.wm.app.b2b.server.ServiceException;
 // --- <<IS-START-IMPORTS>> ---
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import java.security.SecureRandom;
+import java.time.Instant;
+import java.util.Enumeration;
+import java.util.Map;
+import java.net.NetworkInterface;
+import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
 // --- <<IS-END-IMPORTS>> ---
 
 public final class j
@@ -68,6 +91,29 @@ public final class j
 		IDataUtil.put(pipelineCursor_1, "generatedString", sb.toString());
 		pipelineCursor_1.destroy();
 			
+		// --- <<IS-END>> ---
+
+                
+	}
+
+
+
+	public static final void getCurrentHostName (IData pipeline)
+        throws ServiceException
+	{
+		// --- <<IS-START(getCurrentHostName)>> ---
+		// @sigtype java 3.5
+		// [o] field:0:required currentHostName
+		String hostname=null;
+		try {
+			hostname = java.net.InetAddress.getLocalHost().getHostName();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		IDataCursor pipelineCursor = pipeline.getCursor();
+		IDataUtil.put( pipelineCursor, "currentHostName", hostname );
+		pipelineCursor.destroy();
 		// --- <<IS-END>> ---
 
                 
