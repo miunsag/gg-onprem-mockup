@@ -50,8 +50,8 @@ while [ ${usersNo} -le ${maxUsersNo} ]; do
     echo ""
 
     jmeter -n \
-      -JserviceHostname=msr-test-01 \
-      -JservicePort=5555 \
+      -JserviceHostname=${API_HOST} \
+      -JservicePort=${API_PORT} \
       -JserviceAdminPassword=${IS_ADMIN_PWD} \
       -JnoOfUsers=${usersNo} \
       -JloopCount=${loopCount} \
@@ -61,6 +61,8 @@ while [ ${usersNo} -le ${maxUsersNo} ]; do
       -JfastServiceBodyChars=48 \
       -JslowServiceBodyChars=${crtBigBodySize} \
       -Jprometheus.ip=0.0.0.0 \
+      -Jprotocol=${API_PROTOCOL} \
+      -JapiURI=${API_URI} \
       -t /tmp/suite.jmx
 
     echo ""

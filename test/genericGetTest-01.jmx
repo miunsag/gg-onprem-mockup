@@ -61,9 +61,9 @@
           </elementProp>
           <stringProp name="HTTPSampler.domain">${__P(serviceHostname,localhost)}</stringProp>
           <stringProp name="HTTPSampler.port">${__P(servicePort,40155)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(apiURI,/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource)}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -161,9 +161,9 @@
           </elementProp>
           <stringProp name="HTTPSampler.domain">${__P(serviceHostname,localhost)}</stringProp>
           <stringProp name="HTTPSampler.port">${__P(servicePort,40155)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(apiURI,/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource)}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -322,9 +322,9 @@
           </elementProp>
           <stringProp name="HTTPSampler.domain">${__P(serviceHostname,localhost)}</stringProp>
           <stringProp name="HTTPSampler.port">${__P(servicePort,40155)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(apiURI,/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource)}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -476,9 +476,9 @@
           </elementProp>
           <stringProp name="HTTPSampler.domain">${__P(serviceHostname,localhost)}</stringProp>
           <stringProp name="HTTPSampler.port">${__P(servicePort,40155)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${__P(protocol,http)}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource</stringProp>
+          <stringProp name="HTTPSampler.path">${__P(apiURI,/rad/SoftwareAG.Mockup.restResource:genericResource/genericResource)}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
