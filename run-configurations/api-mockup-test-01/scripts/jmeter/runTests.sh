@@ -52,7 +52,8 @@ while [ ${usersNo} -le ${maxUsersNo} ]; do
     jmeter -n \
       -JserviceHostname=${API_HOST} \
       -JservicePort=${API_PORT} \
-      -JserviceAdminPassword=${IS_ADMIN_PWD} \
+      -JapiUser=${API_USER} \
+      -JapiUserPassword=${API_USER_PWD} \
       -JnoOfUsers=${usersNo} \
       -JloopCount=${loopCount} \
       -JquickThreadGroup.loopCount=${longLoopCount} \
