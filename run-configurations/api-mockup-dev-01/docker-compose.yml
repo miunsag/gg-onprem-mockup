@@ -5,6 +5,7 @@ services:
     image: ${CONTAINER_REGISTRY_URL}/${CONTAINER_IMAGE_REPOSITORY}:${CONTAINER_IMAGE_TAG}
     ports:
       - ${HOST_PORT_PREFIX}55:5555
+    hostname: api-mockup-dev-01
     volumes:
       - ${HOST_MSR_LICENSE_FILE}:/tmp/license.xml
       - ./application.properties:/tmp/application.properties
